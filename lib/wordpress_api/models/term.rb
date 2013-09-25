@@ -1,9 +1,9 @@
-require 'data_mapper'
+require 'models/init'
 
 module WordpressApi
   class Term
-    
-    include DataMapper::Ressource
+
+    include DataMapper::Resource
 
     storage_names[:default] = "wp_terms"
 
@@ -11,6 +11,8 @@ module WordpressApi
     property :name, String, field: "name"
     property :slug, String, field: "slug"
     property :group, Integer, field: "term_group"
+
+    has n, :taxonomy, "Taxonomy", parent_key: [:id], child_key: [:term_id]
 
   end
 end

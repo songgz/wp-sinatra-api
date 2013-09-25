@@ -1,4 +1,4 @@
-require 'data_mapper'
+require 'models/init'
 
 module WordpressApi
   class User

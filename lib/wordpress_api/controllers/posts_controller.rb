@@ -13,7 +13,8 @@ module WordpressApi
     end
 
     get '/configs', provides: :text do
-      
+      test = get :show_exceptions
+      test
     end
 
   end

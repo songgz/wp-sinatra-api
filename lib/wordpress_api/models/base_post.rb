@@ -1,5 +1,4 @@
-require 'data_mapper'
-require 'models/user'
+require 'models/init'
 
 module WordpressApi
   class BasePost
@@ -22,6 +21,9 @@ module WordpressApi
     property :created_at, DateTime, field: "post_date"
 
     belongs_to :author, "User", parent_key: [:id], child_key: [:author_id]
+    has n, :taxonomies, "Taxonomy", through: :base_post_taxonomy
+    has n, :categories, "Category", through: :base_post_taxonomy
+    has n, :tags, "Category", through: :base_post_taxonomy
     
   end
 end

@@ -1,9 +1,17 @@
-require 'models/base_post'
+require 'models/init'
 
 module WordpressApi
   class Post < BasePost
 
     default_scope(:default).update(post_type: "post")
+
+    before :save, :set_defaults
+
+    private
+
+    def set_defaults
+      self.post_type = "post"
+    end
 
   end
 end

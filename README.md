@@ -1,4 +1,8 @@
-WpSinatra API
+Wordpress Sinatra API
 ==============
 
-A Wordpress read-only API using Sinatra.
+A Wordpress API using Sinatra and a DataMapper wrapper around the Wordpress database delirium. 
+The DataMapper models can be used outside the API, if you'd like to have a Ruby hook around a 
+Wordpress database.
+
+The API currently supports only GET requests (reads).

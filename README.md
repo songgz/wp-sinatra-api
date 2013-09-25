@@ -1,4 +1,4 @@
-wp_sinatra_api
+WpSinatra API
 ==============
 
-Wordpress Sinatra API (read-only)
+A Wordpress read-only API using Sinatra.

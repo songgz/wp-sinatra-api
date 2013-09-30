@@ -7,8 +7,8 @@ module WordpressApi
 
     storage_names[:default] = "wp_term_relationships"
 
-    property :base_post_id, Integer, key: true, field: "object_id"
-    property :taxonomy_id, Integer, key: true, field: "term_taxonomy_id"
+    property :base_post_id, Integer, key: true, field: "object_id", allow_nil: false, min: 1, max: 4294967295
+    property :taxonomy_id, Integer, key: true, field: "term_taxonomy_id", allow_nil: false, min: 1, max: 4294967295
     property :position, Integer, field: "term_order"
 
     belongs_to :base_post, "BasePost", parent_key: [:id], child_key: [:base_post_id]

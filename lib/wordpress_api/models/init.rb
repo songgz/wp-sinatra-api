@@ -8,3 +8,12 @@ require 'models/taxonomy'
 require 'models/category'
 require 'models/tag'
 require 'models/base_post_taxonomy'
+
+DataMapper.setup(:default, 
+  adapter: WordpressApi::Configs.db.adapter,
+  host: WordpressApi::Configs.db.host,
+  username: WordpressApi::Configs.db.username,
+  password: WordpressApi::Configs.db.password,
+  database: WordpressApi::Configs.db.database
+)
+DataMapper.finalize

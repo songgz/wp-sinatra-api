@@ -1,20 +1,18 @@
-require 'sinatra/base'
-require 'models/post'
+require 'controllers/base_controller'
 
 module WordpressApi
-  class PostsController < Sinatra::Base
+  class PostsController < BaseController
 
-    get '/posts', provides: :json do
-      Post.all.to_json
+    configure do
+      set :prefix, '/posts'
     end
 
-    get '/posts/:id', provides: :json do
+    get "#{settings.prefix}" do
+      paginate(Post.all(:order => [ :created_at.desc ]), params).to_json
+    end
+
+    get "#{settings.prefix}/:id" do
       Post.get!(params[:id]).to_json
-    end
-
-    get '/configs', provides: :text do
-      test = get :show_exceptions
-      test
     end
 
   end

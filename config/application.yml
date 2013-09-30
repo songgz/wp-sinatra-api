@@ -1,0 +1,24 @@
+defaults: &defaults
+  pagination:
+    limit: 5
+
+development:
+  <<: *defaults
+  db:
+    adapter: "mysql"
+    host: "localhost"
+    username: "root"
+    password: "root"
+    database: "wp_dummy"
+
+test:
+  <<: *defaults
+  db:
+    adapter: "mysql"
+    host: "localhost"
+    username: "root"
+    password: "root"
+    database: "wp_dummy_test"
+
+production:
+  <<: *defaults

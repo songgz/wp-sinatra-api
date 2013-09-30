@@ -1,14 +1,17 @@
-require 'sinatra/base'
-require 'models/page'
+require 'controllers/base_controller'
 
 module WordpressApi
-  class PagesController < Sinatra::Base
+  class PagesController < BaseController
 
-    get '/pages', provides: :json do
+    configure do
+      set :prefix, '/pages'
+    end
+
+    get "#{settings.prefix}" do
       Page.all.to_json
     end
 
-    get '/pages/:id', provides: :json do
+    get "#{settings.prefix}/:id" do
       Page.get!(params[:id]).to_json
     end
 

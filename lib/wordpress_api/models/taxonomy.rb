@@ -24,9 +24,7 @@ module WordpressApi
 
     # Create shortcuts for Term properties
     [:name, :slug, :group].each do |term_property|
-      define_method term_property do
-        term.send(term_property)
-      end
+      define_method(term_property) { term.send(term_property) }
     end
 
     def parent_id=(val)

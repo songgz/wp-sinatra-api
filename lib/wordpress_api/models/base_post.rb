@@ -30,10 +30,16 @@ module WordpressApi
     has n, :taxonomies, "Taxonomy", through: :base_post_taxonomy
     has n, :categories, "Category", through: :base_post_taxonomy
     has n, :tags, "Category", through: :base_post_taxonomy
+    has n, :base_post_metas, "BasePostMeta", parent_key: [:id], child_key: [:post_id]
 
     validates_within :post_type, set: POST_TYPES
     validates_within :status, set: STATUSES
     validates_within :comment_status, set: COMMENT_STATUSES
+
+    # Create shortcuts for BasePostMeta properties
+    [:thumbnail].each do |bpm_property|
+      define_method(bpm_property) { base_post_metas.send(bpm_property) }
+    end
 
     def as_json(options = {})
       super(

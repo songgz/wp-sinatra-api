@@ -5,7 +5,7 @@ module WordpressApi
 
     default_scope(:default).update(post_type: "post")
 
-    before :save, :set_defaults
+    before :valid?, :set_defaults
 
     private
 

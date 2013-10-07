@@ -5,12 +5,13 @@ module WordpressApi
 
     default_scope(:default).update(taxonomy_type: "category")
 
-    before :save, :set_defaults
+    before :valid?, :set_defaults
 
     private
 
     def set_defaults
       self.taxonomy_type = "category"
     end
+
   end
 end

@@ -5,7 +5,7 @@ module WordpressApi
 
     default_scope(:default).update(taxonomy_type: "post_tag")
 
-    before :save, :set_defaults
+    before :valid?, :set_defaults
 
     private
 

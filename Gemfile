@@ -7,6 +7,7 @@ gem 'dm-mysql-adapter'
 gem 'settingslogic'
 
 group :development, :test do
+  gem 'rake'
   gem 'rspec'
   gem 'rack-test'
   gem 'database_cleaner'

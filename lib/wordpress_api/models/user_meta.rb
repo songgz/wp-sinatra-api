@@ -20,7 +20,9 @@ module WordpressApi
       [:first_name, :last_name, :nickname, :description].each do |property|
         define_method(property) do
           meta = all(meta_key: property).first
-          meta.nil? ? nil : meta.meta_value
+          unless meta.nil?
+            meta.meta_value
+          end
         end
       end
 

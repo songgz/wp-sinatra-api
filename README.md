@@ -8,3 +8,7 @@ The DataMapper models can be used outside the API, if you'd like to have a Ruby 
 Wordpress database.
 
 The API currently supports only GET requests (reads).
+
+## Development
+
+Launch with ``rerun rackup``.

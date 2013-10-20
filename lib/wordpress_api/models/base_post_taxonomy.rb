@@ -9,7 +9,7 @@ module WordpressApi
 
     property :base_post_id, Integer, key: true, field: "object_id", allow_nil: false, min: 1, max: 4294967295
     property :taxonomy_id, Integer, key: true, field: "term_taxonomy_id", allow_nil: false, min: 1, max: 4294967295
-    property :position, Integer, field: "term_order"
+    property :position, Integer, field: "term_order", min: 0
 
     belongs_to :base_post, "BasePost", parent_key: [:id], child_key: [:base_post_id]
     belongs_to :post, "Post", parent_key: [:id], child_key: [:base_post_id]

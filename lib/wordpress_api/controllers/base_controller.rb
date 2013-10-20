@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require 'data_mapper'
+require 'json'
 require 'configs'
 require 'models/init'
 
@@ -27,25 +28,6 @@ module WordpressApi
 
     not_found do
       { code: 404, status: :error, message: "not_found" }.to_json
-    end
-
-    helpers do
-      def paginate(query, params = {})
-        limit = params.key?(:limit) ? params[:limit] : Configs.pagination.limit
-        if limit
-          if params.key?(:after)
-            query.all(:created_at.gt => params[:after], :limit => limit)
-          elsif params.key?(:before)
-            query.all(:created_at.lt => params[:before], :limit => limit)
-          elsif params.key?(:page)
-            query.all(:offset => (params[:page] - 1) * limit, :limit => limit)
-          else
-            query.all(:limit => limit)
-          end
-        else
-          query
-        end
-      end
     end
 
   end

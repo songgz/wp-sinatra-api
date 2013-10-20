@@ -26,11 +26,13 @@ namespace :db do
   end
 
   desc "Populates the database with random data"
-  task :populate => :environment do
-    users = 5.times.map { user = FactoryGirl.build(:user); user.save; user }
-    tags = 20.times.map { tag = FactoryGirl.build(:tag); tag.save; tag }
-    categories = 10.times.map { category = FactoryGirl.build(:category); category.save; category }
-    posts = 50.times.map do 
+  task :populate, [:posts, :users, :tags, :categories] => :environment do |t, args|
+    args.with_defaults(posts: 50, users: 5, tags: 20, categories: 10)
+    
+    users = args[:users].times.map { user = FactoryGirl.build(:user); user.save; user }
+    tags = args[:tags].times.map { tag = FactoryGirl.build(:tag); tag.save; tag }
+    categories = args[:categories].times.map { category = FactoryGirl.build(:category); category.save; category }
+    posts = args[:posts].times.map do 
       post = FactoryGirl.build(:post, author: users.sample)
       post.tags = tags.sample(rand(tags.count))
       post.categories = categories.sample(rand(1..3))

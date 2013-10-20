@@ -11,9 +11,9 @@ module WordpressApi
 
     property :id, Serial, key: true, field: "term_taxonomy_id"
     property :term_id, Integer, field: "term_id", allow_nil: false, min: 1, max: 4294967295
-    property :parent_id, Integer, field: "parent", allow_nil: true, min: 1, max: 4294967295
-    property :taxonomy_type, String, field: "taxonomy"
-    property :description, String, field: "description"
+    property :parent_id, Integer, field: "parent", allow_nil: true, min: 0, max: 4294967295
+    property :taxonomy_type, String, field: "taxonomy", length: 32
+    property :description, Text, field: "description"
     property :position, Integer, field: "count"
 
     belongs_to :term, "Term", parent_key: [:id], child_key: [:term_id]
